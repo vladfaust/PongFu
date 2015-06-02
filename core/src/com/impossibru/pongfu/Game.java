@@ -1,27 +1,33 @@
 package com.impossibru.pongfu;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.impossibru.pongfu.gui.GUI;
+import com.impossibru.pongfu.screens.MainMenuScreen;
 
-public class Game extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+import shared.MyGame;
+
+public class Game extends MyGame
+{
+	/*
+		Settings
+	 */
+
 	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+	protected void setGameWidth()
+	{
+		gameWidth = 1080;
 	}
 
 	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+	public void create()
+	{
+		super.create();
+
+		// Init different things
+
+		new GUI();
+
+		// Go
+
+		setScreen(new MainMenuScreen());
 	}
 }
